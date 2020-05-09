@@ -1,39 +1,36 @@
 package ru.netology.manager;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import ru.netology.domain.Film;
+import ru.netology.repository.FilmRepository;
 
+@AllArgsConstructor
 @NoArgsConstructor
 public class AfishaManager {
-    private Film[] films = new Film[0];
+    private FilmRepository repository = new FilmRepository();
     private int itemsToReturn = 10;
 
-    public AfishaManager(int itemsToReturn) {
-        this.itemsToReturn = itemsToReturn;
+    public AfishaManager(FilmRepository repository) {
+        this.repository = repository;
     }
 
     public void add(Film film) {
-        Film[] tmp = new Film[films.length + 1];
-
-        System.arraycopy(films, 0, tmp, 0, films.length);
-
-        tmp[tmp.length - 1] = film;
-        films = tmp;
-
+        repository.save(film);
     }
 
     public Film[] getFilms() {
-        //int arrayLength = films.length <= ? films.length : itemsToReturn;
+        Film[] filmsFromRepo = repository.findAll();
         int arrayLength = itemsToReturn;
-        if (films.length <= arrayLength) {
-            arrayLength = films.length;
+        if (filmsFromRepo.length <= arrayLength) {
+            arrayLength = filmsFromRepo.length;
         }
 
         Film[] result = new Film[arrayLength];
 
         for (int i = 0; i < arrayLength; i++) {
-            int index = films.length - i - 1;
-            result[i] = films[index];
+            int index = filmsFromRepo.length - i - 1;
+            result[i] = filmsFromRepo[index];
         }
 
         return result;
