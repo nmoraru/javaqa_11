@@ -68,6 +68,9 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <excludes>
+                        <exclude>**/domain/*</exclude>
+                    </excludes>
                     <rules>
                         <rule>
                             <limits>
