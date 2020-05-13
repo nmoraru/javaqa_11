@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.netology</groupId>
-    <artifactId>smart-house</artifactId>
+    <artifactId>Afisha-manager</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
