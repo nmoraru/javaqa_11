@@ -23,7 +23,6 @@ public class AfishaManager {
     }
 
     public Film[] getFilms() {
-        //int arrayLength = films.length <= ? films.length : itemsToReturn;
         int arrayLength = itemsToReturn;
         if (films.length <= arrayLength) {
             arrayLength = films.length;
