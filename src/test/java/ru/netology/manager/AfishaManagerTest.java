@@ -35,6 +35,15 @@ class AfishaManagerTest {
     }
 
     @Test
+    void shouldGetFilms() {
+        Film[] expected = new Film[]{film2, film1};
+        manager.add(film1);
+        manager.add(film2);
+
+        assertArrayEquals(expected, manager.getFilms());
+    }
+
+    @Test
     void shouldReturnEmptyArray() {
         assertArrayEquals(new Film[0], manager.getFilms());
     }
