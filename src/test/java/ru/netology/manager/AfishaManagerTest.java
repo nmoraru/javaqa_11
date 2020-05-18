@@ -17,7 +17,7 @@ class AfishaManagerTest {
     FilmRepository repository;
 
     @InjectMocks
-    AfishaManager manager;
+    AfishaManager manager = new AfishaManager(7);
     Film film1 = new Film(1, "Достучаться до небес", "мелодрамма", "http://test.jpg", 1997);
     Film film2 = new Film(2, "Назад в будущее", "фантастика", "http://test.jpg", 1985);
     Film film3 = new Film(3, "Кин-дза-дза", "комедия", "http://test.jpg", 1986);
@@ -46,6 +46,18 @@ class AfishaManagerTest {
 
         assertArrayEquals(expected, manager.getFilms());
         verify(repository).findAll();
+    }
+
+    @Test
+    void shouldGetFilms() {
+        Film[] toBeReturned = {film1, film2};
+        doReturn(toBeReturned).when(repository).findAll();
+
+        Film[] expected = new Film[]{film2, film1};
+        manager.add(film1);
+        manager.add(film2);
+
+        assertArrayEquals(expected, manager.getFilms());
     }
 
 }

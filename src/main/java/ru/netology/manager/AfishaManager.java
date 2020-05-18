@@ -6,13 +6,16 @@ import ru.netology.domain.Film;
 import ru.netology.repository.FilmRepository;
 
 @AllArgsConstructor
-@NoArgsConstructor
 public class AfishaManager {
     private FilmRepository repository = new FilmRepository();
     private int itemsToReturn = 10;
 
     public AfishaManager(FilmRepository repository) {
         this.repository = repository;
+    }
+
+    public AfishaManager(int itemsToReturn) {
+        this.itemsToReturn = itemsToReturn;
     }
 
     public void add(Film film) {

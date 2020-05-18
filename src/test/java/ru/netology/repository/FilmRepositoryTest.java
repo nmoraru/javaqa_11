@@ -5,6 +5,7 @@ import ru.netology.domain.Film;
 import ru.netology.manager.AfishaManager;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FilmRepositoryTest {
     FilmRepository repository = new FilmRepository();
@@ -33,6 +34,41 @@ class FilmRepositoryTest {
         repository.save(film5);
 
         assertArrayEquals(expected, repository.findAll());
+    }
+
+    @Test
+    void shouldFindById() {
+        repository.save(film1);
+        repository.save(film2);
+
+        String expected = "Достучаться до небес";
+
+        assertEquals(expected, repository.findById(1).getName());
+    }
+
+    @Test
+    void shouldRemoveById() {
+        repository.save(film1);
+        repository.save(film2);
+
+        repository.removeById(1);
+
+        String expected = null;
+
+        assertEquals(expected, repository.findById(1));
+    }
+
+    @Test
+    void shouldRemoveAll() {
+        repository.save(film1);
+        repository.save(film2);
+
+        repository.removeAll();
+
+        String expected = null;
+
+        assertEquals(expected, repository.findById(1));
+        assertEquals(expected, repository.findById(2));
     }
 
     @Test
